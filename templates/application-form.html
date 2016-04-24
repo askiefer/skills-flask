@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+	<p class="instructions">Please fill in your first and last name, the job you are applying for, and your salary requirements.<br>We look forward to hearing from you.</p>
+	<div>
+	<form action="/application" method="POST">
+	<label for="first-name-input">First Name: </label>
+	<input type="text" name="firstname" id="first-name-input"/>
+	
+	<label for="last-name-input">Last Name: </label>
+	<input type="text" name="lastname" id="last-name-input" /><br>
+
+	<label for="salary-input">Salary Requirements (USD): </label>
+	<input type="text" name="salary" id="salary-input"/>
+
+	<label for="job-input">Job Seeking: </label>
+	<select id="job-input" name="job-input">
+		<option value="software engineer">Software Engineer</option>
+		<option value="QA Engineer">Quality Assurance Engineer</option>
+		<option value="Product Manager">Product Manager</option>
+	</select><br>
+
+		<input type="submit" value="Submit" />
+	</form>
+</div>
+</body>
+{% endblock %}
