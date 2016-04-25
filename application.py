@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash
+from flask import Flask, render_template, flash, request, redirect
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def index_page():
 
     # Alternately, we could make this a Jinja template in `templates/`
     # and return that result of rendering this, like:
-    #
+    
     return render_template("base.html")
 
 @app.route("/application-form")
@@ -31,6 +31,10 @@ def submission_response():
 	last_name = request.form.get("lastname")
 	job_type = request.form.get("job-input")
 	exp_salary = request.form.get("salary")
+
+	if first_name == "" or last_name == "" or job_type == "" or exp_salary == "":
+		flash("Please fill in all the required forms.")
+		return redirect("application-form")
 	
 	return render_template("application-response.html", firstname=first_name, 
 		lastname=last_name, jobtype=job_type, salary=exp_salary)
